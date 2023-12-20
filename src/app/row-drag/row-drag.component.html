@@ -1,0 +1,166 @@
+<button (click)="toggleDragDrop()" >{{ buttonLabel }}</button>
+<div
+  #dropListContainer
+  class="example-container"
+  cdkDropListGroup
+  fxLayout="row wrap"
+  
+>
+  <div
+    *ngFor="let item of data; let i = index"
+    cdkDropList
+    [cdkDropListData]="i"
+    [ngStyle]="{ 'border': '1px solid #ccc', 'padding': '10px', 'margin': '10px', 'cursor': 'pointer', 'width.px': item.width}"
+  
+  >
+    <div cdkDrag [cdkDragData]="i" (cdkDragEntered)="dragEntered($event)" [cdkDragDisabled]="dragAndDropEnabled"  [style.cursor]="isDragActive ? 'move' : 'default'"> 
+      <div *ngIf="item.name === 'PO'; else addCase" class="grid-item">
+        <h2>{{ item.name }} {{ i + 1 }}</h2>
+        <div [style.width.px]="item.width">Your content for 'PO' goes here. width: {{ item.width }}</div>
+      </div>
+
+      <ng-template #addCase>
+        <div *ngIf="item.name === 'ADD'; else subCase" class="grid-item">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">Your content for 'ADD' goes here. width: {{ item.width }}</div>
+        </div>
+
+        <ng-template #subCase>
+          <div *ngIf="item.name === 'Sub'; else mulCase" class="grid-item">
+            <h2>{{ item.name }}{{ i + 1 }}</h2>
+            <div [style.width.px]="item.width">Your content for 'Sub' goes here. width: {{ item.width }}</div>
+          </div>
+
+          <ng-template #mulCase>
+            <div *ngIf="item.name === 'MUL'; else nullCase" class="grid-item">
+              <h2>{{ item.name }} {{ i + 1 }}</h2>
+              <div [style.width.px]="item.width">Your content for 'MUL' goes here. width: {{ item.width }}</div>
+            </div>
+
+            <ng-template #nullCase>
+              <div *ngIf="item.name === 'Null'; else naCase" class="grid-item">
+                <h2>{{ item.name }}{{ i + 1 }}</h2>
+                <div [style.width.px]="item.width">Your content for 'Null' goes here. width: {{ item.width }}</div>
+              </div>
+
+              <ng-template #naCase>
+                <div *ngIf="item.name === 'NA'; else fracCase" class="grid-item">
+                  <h2>{{ item.name }}  {{ i + 1 }}</h2>
+                  <div [style.width.px]="item.width">Your content for 'NA' goes here. width: {{ item.width }}</div>
+                </div>
+
+                <ng-template #fracCase>
+                  <div *ngIf="item.name === 'Frac'; else infinityCase" class="grid-item">
+                    <h2>{{ item.name }}{{ i + 1 }}</h2>
+                    <div [style.width.px]="item.width">Your content for 'Frac' goes here. width: {{ item.width }}</div>
+                  </div>
+
+                  <ng-template #infinityCase>
+                    <div *ngIf="item.name === 'Infinity'; else exceptionCase" class="grid-item">
+                      <h2>{{ item.name }} {{ i + 1 }}</h2>
+                      <div [style.width.px]="item.width">Your content for 'Infinity' goes here. width: {{ item.width }}</div>
+                    </div>
+
+                    <ng-template #exceptionCase>
+                      <div *ngIf="item.name === 'Exception'; else abstractCase" class="grid-item">
+                        <h2>{{ item.name }} {{ i + 1 }}</h2>
+                        <div [style.width.px]="item.width">Your content for 'Exception' goes here. width: {{ item.width }}</div>
+                      </div>
+
+                      <ng-template #abstractCase>
+                        <div *ngIf="item.name === 'Absract'; " class="grid-item">
+                          <h2>{{ item.name }}  {{ i + 1 }}</h2>
+                          <div [style.width.px]="item.width">Your content for 'Abstract' goes here. width: {{ item.width }}</div>
+                        </div>
+
+                         <ng-template #defaultCase>
+                          <div class="grid-item">
+                            <h2>No matching case for {{ item.name }}</h2>
+                          </div>
+                        </ng-template> 
+                      </ng-template>
+                    </ng-template>
+                  </ng-template>
+                </ng-template>
+              </ng-template>
+            </ng-template>
+          </ng-template>
+        </ng-template>
+      </ng-template> 
+      <!-- <ng-container [ngSwitch]="item.name"   >
+      
+        <ng-container *ngSwitchCase="'PO'"   >
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'PO' goes here. width: {{ item.width }}
+          </div>
+        </ng-container>
+        <div *ngSwitchCase="'ADD'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'ADD' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'Sub'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'Sub' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'MUL'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'MUL' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'Null'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'Null' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'NA'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'NA' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'Frac'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'Frac' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'Infinity'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'Infinity' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'Exception'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'Exception' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchCase="'Absract'">
+          <h2>{{ item.name }} {{ i + 1 }}</h2>
+          <div [style.width.px]="item.width">
+            Your content for 'Absract' goes here. width: {{ item.width }}
+          </div>
+        </div>
+        <div *ngSwitchDefault style="display: none"></div>
+      </ng-container>   -->
+      
+       
+    </div>
+  </div>
+</div>
+<div>
+  <label for="dropdown">Select an option:</label>
+  <select id="dropdown"  #myDropdown  (change)="onDropdownChange(myDropdown.value)">
+    <option *ngFor="let option of dropdownValues" [value]="option">{{ option }}</option>
+  </select>
+</div>
+
+

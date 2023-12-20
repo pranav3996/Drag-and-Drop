@@ -1,0 +1,94 @@
+<div
+  style="
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    height: 100vh;
+  "
+>
+  <!-- First Row -->
+  <div
+    style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px"
+  >
+    <div #dropListContainer class="example-container" cdkDropListGroup>
+      <div
+        *ngFor="let container of containers1; let i = index"
+        cdkDropList
+        [cdkDropListData]="i"
+        style="border: 1px solid #ccc; padding: 10px"
+      >
+        <div
+          cdkDrag
+          [cdkDragData]="i"
+          (cdkDragEntered)="dragEntered($event)"
+          (cdkDragMoved)="dragMoved($event)"
+          (cdkDragDropped)="dragDropped($event)"
+        >
+          <!-- {{ container }} -->
+          <ng-container [ngSwitch]="container">
+            <div>
+              <ng-container *ngSwitchCase="'Container 1'">
+                <div>Hii Sushil Takla</div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Container 2'">
+                <div>Hii Pranav</div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Container 3'">
+                <div>Hii Ankit Chapri</div>
+              </ng-container>
+            </div>
+            <div>
+              <ng-container *ngSwitchCase="'Container 5'">
+                <div>Hii Naresh Powder</div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Container 6'">
+                <div>Hii Saquib Sattabaaz</div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Container 7'">
+                <div>Hii Soubharh Harami</div>
+              </ng-container>
+            </div>
+
+            <ng-container *ngSwitchDefault>
+              <div>{{ container }}</div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Row -->
+  <!-- <div
+    style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px"
+    cdkDropListGroup
+  >
+    <div
+      *ngFor="let container of containers2; let i = index"
+      cdkDrag
+      (cdkDragDropped)="onDrop($event, containers2, i)"
+      style="border: 1px solid #ccc; padding: 10px"
+    >
+      {{ container }}
+    </div>
+  </div> -->
+
+  <!-- Third Row -->
+  <!-- <div
+    style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px"
+    cdkDropListGroup
+  >
+    <div
+      *ngFor="let container of containers3; let i = index"
+      cdkDrag
+      (cdkDragDropped)="onDrop($event, containers3, i)"
+      style="border: 1px solid #ccc; padding: 10px"
+    >
+      {{ container }}
+    </div>
+  </div> -->
+</div>
+<!-- app.component.html -->
+<!-- <div cdkDropList (cdkDropListDropped)="onDrop($event)">
+    <div *ngFor="let item of items" cdkDrag>{{ item }}</div>
+  </div> -->

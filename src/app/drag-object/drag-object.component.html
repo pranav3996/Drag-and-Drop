@@ -1,0 +1,72 @@
+<!-- your-component.component.html -->
+<div class="grid-container">
+<div #dropListContainer class="example-container" cdkDropListGroup>
+    <div
+    *ngFor="let item of data; let i = index" class="box-container"
+    cdkDropList
+    [cdkDropListData]="i"
+    style="border: 1px solid #ccc; padding: 10px"
+  >
+    <div
+      cdkDrag
+      [cdkDragData]="i"
+      (cdkDragEntered)="dragEntered($event)"
+      (cdkDragMoved)="dragMoved($event)"
+      (cdkDragDropped)="dragDropped($event)"
+    >
+    <ng-container [ngSwitch]="item.name">
+        <div *ngSwitchCase="'PO'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'PO' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'ADD'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'ADD' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'Sub'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'Sub' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'MUL'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'MUL' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'Null'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'Null' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'NA'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'NA' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'Frac'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'Frac' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'Infinity'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'Infinity' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'Exception'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'Exception' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchCase="'Absract'">
+          <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+          <div [style.height.px]="item.height">Your content for 'Abstract' goes here. Height: {{ item.height }}</div>
+        </div>
+        <div *ngSwitchDefault>
+          <h2>No matching case for {{ item.name }}</h2>
+        </div>
+      </ng-container>
+    
+      <!-- <h2>{{ item.name }} {{ i === 0 ? 'Container' : 'Card' }} {{ i + 1 }}</h2>
+      <div [style.height.px]="item.height" >
+   
+      </div> -->
+    </div>
+  </div>
+
+</div>
+</div>
+  

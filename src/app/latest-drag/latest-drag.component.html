@@ -1,0 +1,26 @@
+<!-- First Row -->
+ <div #dropListContainer class="example-wrapper" cdkDropListGroup>
+  <div
+    class="example-box"
+    *ngFor="let container of containers1; let i = index"
+    cdkDropList
+    [cdkDropListData]="i"
+    style="border: 1px solid #ccc; padding: 0px; height: 200px; width: 200px"
+  >
+    <div
+      style="border: 2px solid blue; width: 200px; height: 200px"
+      cdkDrag
+      [cdkDragData]="i"
+      (cdkDragEntered)="dragEntered($event)"
+      (cdkDragMoved)="dragMoved($event)"
+      (cdkDragDropped)="dragDropped($event)"
+    >
+      <app-custom-card [name]="container.name" [designation]="container.designation" />
+    </div>
+  </div>
+</div> 
+
+
+
+
+
